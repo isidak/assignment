@@ -10,11 +10,10 @@ export class UsersService {
 
   usersList$: Observable<UserModel[]>;
 
-  private usersList = new BehaviorSubject<any>(null);
+  private usersList = new BehaviorSubject<UserModel[]>([]);
 
   constructor(private http: HttpClient) {
-    // this.usersList$ = this.usersList.asObservable()
-    this.usersList$ = this.getUsers();
+    this.usersList$ = this.usersList.asObservable()
   }
 
   getUsers(): Observable<any> {
@@ -23,8 +22,20 @@ export class UsersService {
       );
     }
 
+    getUsersSnapshot() {
+    return this.usersList.value;
+    }
+
     removeItem(id: string){
-      //TODO write delete functionality
+     const updatedUserList =  this.getUsersSnapshot().filter((user) => user.id !== id);
+     this.usersList.next(updatedUserList);
+
+      //TODO save changes to server
+
+    }
+
+   editItem(){
+      //TODO write edit functionality
 
     }
 }
