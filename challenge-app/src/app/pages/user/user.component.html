@@ -1,0 +1,12 @@
+<ng-container *ngIf="user">
+  <tr>
+    <td>{{user.id}}</td>
+    <td>{{user.name}}</td>
+    <td>{{user.dateOfBirth}}</td>
+    <td>{{user.city}}</td>
+    <td>{{user.country}}</td>
+    <button (click)="removeItem()">Remove</button>
+    <button (click)="editItem()">Edit</button>
+  </tr>
+</ng-container>
+

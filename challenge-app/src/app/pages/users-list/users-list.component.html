@@ -1,0 +1,21 @@
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Date of birth</th>
+    <th>City</th>
+    <th>Country</th>
+  </tr>
+  </thead>
+  <ng-container *ngIf="users$ | async as users">
+
+    <tbody>
+      <tr *ngFor="let user of users | paginate:
+          { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems  }; let i = index"> <app-user (remove)="removeItem(i, user.id)" [user]="user" index></app-user> </tr>
+    </tbody>
+
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+  </ng-container>
+
+</table>
