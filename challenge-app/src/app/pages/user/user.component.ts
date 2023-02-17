@@ -32,6 +32,7 @@ export class UserComponent {
   }
 
   saveItem() {
+    //TODO investigate on the issue with wrong convertion of date to iso string
     if(this.userForm.valid) {
       const updatedUser = this.userForm.value;
       updatedUser.dateOfBirth = moment(updatedUser.dateOfBirth, 'dd/MM/yyyy').toISOString();
