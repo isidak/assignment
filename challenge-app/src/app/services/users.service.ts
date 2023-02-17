@@ -43,4 +43,18 @@ export class UsersService {
     //TODO save changes to server
 
   }
+
+  sortUser(sortBy: any) {
+    const userListSnapshot = [...this.getUsersSnapshot()];
+    const sortedUserList = this.sortByKey(userListSnapshot, sortBy);
+    this.usersList.next(sortedUserList);
+  }
+
+  private sortByKey(array: any[], key: any) {
+    return array.sort(function (a, b) {
+      const x = a[key];
+      const y = b[key];
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+  }
 }

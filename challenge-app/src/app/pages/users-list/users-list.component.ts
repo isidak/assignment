@@ -29,4 +29,8 @@ export class UsersListComponent implements OnInit {
     this.userService.saveUser(user)
   }
 
+  sortUser(sortBy: string) {
+    this.userService.sortUser(sortBy)
+  }
+
 }

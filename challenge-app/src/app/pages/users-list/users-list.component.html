@@ -1,12 +1,12 @@
-<ng-container>
+<ng-container class="container">
   <table>
     <thead>
     <tr>
       <th>Id</th>
-      <th>Name</th>
-      <th>Date of birth</th>
-      <th>City</th>
-      <th>Country</th>
+      <th>Name<a (click)="sortUser('name')"> Sort</a></th>
+      <th>Date of birth<a (click)="sortUser('dateOfBirth')"> Sort</a></th>
+      <th>City<a (click)="sortUser('city')"> Sort</a></th>
+      <th>Country<a (click)="sortUser('country')"> Sort</a></th>
     </tr>
     </thead>
     <ng-container *ngIf="users$ | async as users">
