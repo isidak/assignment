@@ -14,7 +14,7 @@
       <tbody>
       <tr *ngFor="let user of users | paginate:
           { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems  }; let i = index">
-        <app-user (remove)="removeItem(i, user.id)" [user]="user" index></app-user>
+        <app-user (remove)="removeItem(i, user.id)" (saveUser)="saveUser($event)" [user]="user"></app-user>
       </tr>
       </tbody>
 

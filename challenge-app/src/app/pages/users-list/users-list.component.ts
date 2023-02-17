@@ -8,28 +8,25 @@ import {UsersService} from "../../services/users.service";
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.css']
 })
-export class UsersListComponent implements OnInit{
-users$?: Observable<UserModel[]>;
-// getUsers$?: any;
+export class UsersListComponent implements OnInit {
+  users$?: Observable<UserModel[]>;
   pageSize = 10;
   currentPage = 1;
   totalItems = 0;
 
-constructor(protected userService: UsersService) {
-}
+  constructor(protected userService: UsersService) {
+  }
 
-ngOnInit() {
-  this.users$ = this.userService.usersList$;
+  ngOnInit() {
+    this.users$ = this.userService.usersList$;
+  }
 
-  // this.getUsers$ = this.getUsers;
-}
+  removeItem(index: number, id: string) {
+    this.userService.removeItem(id);
+  }
 
-removeItem(index: number, id: string) {
-  this.userService.removeItem(id);
-}
-
-// getUsers(): Observable<any>{
-//   return this.userService.getUsers()
-// }
+  saveUser(user: UserModel) {
+    this.userService.saveUser(user)
+  }
 
 }

@@ -1,12 +1,28 @@
 <ng-container *ngIf="user">
-  <tr>
-    <td>{{user.id}}</td>
-    <td>{{user.name}}</td>
-    <td>{{user.dateOfBirth}}</td>
-    <td>{{user.city}}</td>
-    <td>{{user.country}}</td>
-    <button (click)="removeItem()">Remove</button>
-    <button (click)="editItem()">Edit</button>
-  </tr>
+  <ng-container *ngIf="editableForm; else editUserForm">
+    <tr>
+      <td>{{user.id}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.dateOfBirth | date: 'dd/MM/yyyy'}}</td>
+      <td>{{user.city}}</td>
+      <td>{{user.country}}</td>
+      <td><a (click)="removeItem()">Remove</a></td>
+      <td><a (click)="editItem()">Edit</a></td>
+    </tr>
+  </ng-container>
+
+  <ng-template #editUserForm>
+    <form [formGroup]="userForm">
+      <tr>
+        <td>{{user.id}}</td>
+        <td><input id="name" type="text" formControlName="name"></td>
+        <td><input id="dateOfBirth" type="text" formControlName="dateOfBirth"></td>
+        <td><input id="city" type="text" formControlName="city"></td>
+        <td><input id="country" type="text" formControlName="country"></td>
+        <td><a (click)="saveItem()">Save</a></td>
+        <td><a (click)="cancelEdit()">X</a></td>
+      </tr>
+    </form>
+  </ng-template>
 </ng-container>
 

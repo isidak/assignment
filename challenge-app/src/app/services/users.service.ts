@@ -17,25 +17,30 @@ export class UsersService {
   }
 
   getUsers(): Observable<any> {
-      return this.http.get<UserModel[]>('https://63998da716b0fdad77409a5e.mockapi.io/api/v1/hikers').pipe(
-        tap((users) => this.usersList.next(users))
-      );
-    }
+    return this.http.get<UserModel[]>('https://63998da716b0fdad77409a5e.mockapi.io/api/v1/hikers').pipe(
+      tap((users) => this.usersList.next(users))
+    );
+  }
 
-    getUsersSnapshot() {
+  getUsersSnapshot() {
     return this.usersList.value;
-    }
+  }
 
-    removeItem(id: string){
-     const updatedUserList =  this.getUsersSnapshot().filter((user) => user.id !== id);
-     this.usersList.next(updatedUserList);
+  removeItem(id: string) {
+    const updatedUserList = this.getUsersSnapshot().filter((user) => user.id !== id);
+    this.usersList.next(updatedUserList);
 
-      //TODO save changes to server
+    //TODO save changes to server
 
-    }
+  }
 
-   editItem(){
-      //TODO write edit functionality
+  saveUser(updatedUser: UserModel) {
+    const userListSnapshot = [...this.getUsersSnapshot()];
+    const updatedUserIndex = userListSnapshot.findIndex((user) => user.id === updatedUser.id);
+    userListSnapshot.splice(updatedUserIndex, 1, updatedUser);
+    this.usersList.next(userListSnapshot);
 
-    }
+    //TODO save changes to server
+
+  }
 }
